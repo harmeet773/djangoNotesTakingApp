@@ -25,17 +25,48 @@ A simple **Notes Taking Web Application** built with **Django** where users can 
 ## Project Screenshots
 
 ### Home Page
-![Home page](djangoNotesTakingApp\assests\homepage.png)
+![Home page](.\assests\homepage.png)
 
 ### Login
-![Login](djangoNotesTakingApp\assests\login.png)
+![Login](.\assests\login.png)
 
 ### Notes
-![Notes 1](djangoNotesTakingApp\assests\notes1.png)
-![Notes 2](djangoNotesTakingApp\assests\notes2.png)
+![Notes 1](.\assests\notes1.png)
+![Notes 2](.\assests\notes2.png)
 
 ### Register
-![Register](djangoNotesTakingApp\assests\register.png)
+![Register](.\assests\register.png)
 
+## Installation & Setup
 
+This project was created with python version 3.12.8 
+### 1. Clone the repository
+### 2. Create a virtual environment (optional but recommended)
+```bash
+python -m venv venv
+```
+### 3. Activate the virtual environment
+Windows:
+```bash
+venv\Scripts\activate
+```
+macOS/Linux:
+```bash
+source venv/bin/activate
+```
+### 4. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+### 5. Apply migrations
+```bash
+python manage.py migrate
+```
+### 6. Run the development server
+```bash
+Run the development server
+```
+
+### 7. Open in Browser
+Go to: http://127.0.0.1:8000/ to access the app.
 
