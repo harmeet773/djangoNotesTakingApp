@@ -46,5 +46,10 @@ def notes(request):
     with connection.cursor() as cursor:
         cursor.execute("""    SELECT note_title, note_content ,created_on FROM notes WHERE user_id=%s ORDER BY created_on DESC """, [user_id])
         all_notes = cursor.fetchall()
-    return render(request, 'notes.html', {'notes': all_notes})      
+    return render(request, 'notes.html', {'notes': all_notes})     
+
+def logout_view(request):
+    # Clear the session
+    request.session.flush()
+    return redirect('home') 
 

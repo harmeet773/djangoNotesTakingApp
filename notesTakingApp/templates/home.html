@@ -1,1 +1,24 @@
-need to add html about login and reister and notes 
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h2>Welcome to the Notes App!</h2>
+
+
+
+{% if request.session.user_id %}
+  <p>You are logged in. Go to your <a href="{% url 'notes' %}">Notes</a>.</p>
+  <p>Or <a href="{% url 'logout' %}">Logout</a> from your account.</p>
+{% else %}
+    <p>This is a simple notes taking application where you can:</p>
+    <ul>
+    <li>Register a new account</li>
+    <li>Login to your account</li>
+    <li>Create and manage your notes</li>
+    </ul>
+  <p><a href="{% url 'login' %}">Login</a> if you already have an account.</p>
+  <p>Don't have an account? <a href="{% url 'register' %}">Register here</a>.</p>
+{% endif %}
+
+{% endblock %}
