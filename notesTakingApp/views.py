@@ -1,9 +1,23 @@
 
 # Create your views here.
 from django.http import HttpResponse
-
 from django.shortcuts import render, redirect
 from django.db import connection
+
+from functools import wraps
+
+def login_required(view_func):
+    """
+    Decorator to ensure the user is logged in.
+    Redirects to login page if not.
+    """
+    @wraps(view_func)
+    def wrapper(request, *args, **kwargs):
+        if not request.session.get('user_id'):
+            return redirect('login')
+        return view_func(request, *args, **kwargs)
+    return wrapper
+
 
 def home(request):
     return render(request, 'home.html')  
@@ -20,11 +34,14 @@ def register(request):
             )
         return redirect('login')
     return render(request, 'register.html')
-
+   
 def login_view(request):
+    user_id = request.session.get('user_id')
+    if user_id:
+        return redirect('home')    
     if request.method == 'POST':
         username = request.POST['username']
-        password = request.POST['password']
+        password = request.POST['password']  
         with connection.cursor() as cursor:
             cursor.execute("SELECT user_id FROM users WHERE username=%s AND password=%s", [username, password])
             user = cursor.fetchone()
@@ -34,10 +51,9 @@ def login_view(request):
         return render(request, 'login.html', {'error': 'Invalid credentials'})
     return render(request, 'login.html')
 
+@login_required
 def notes(request):
     user_id = request.session.get('user_id')
-    if not user_id:
-        return redirect('login')    
     if request.method == 'POST':
         note_title = request.POST['note_title']
         note_content = request.POST['note_content']
@@ -48,6 +64,7 @@ def notes(request):
         all_notes = cursor.fetchall()
     return render(request, 'notes.html', {'notes': all_notes})     
 
+@login_required
 def logout_view(request):
     # Clear the session
     request.session.flush()

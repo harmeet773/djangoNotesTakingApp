@@ -22,5 +22,20 @@ A simple **Notes Taking Web Application** built with **Django** where users can 
    - Sessions are handled using Django’s default session framework.
 
 ---
+## Project Screenshots
+
+### Home Page
+![Home page](djangoNotesTakingApp\assests\homepage.png)
+
+### Login
+![Login](djangoNotesTakingApp\assests\login.png)
+
+### Notes
+![Notes 1](djangoNotesTakingApp\assests\notes1.png)
+![Notes 2](djangoNotesTakingApp\assests\notes2.png)
+
+### Register
+![Register](djangoNotesTakingApp\assests\register.png)
+
 
 
