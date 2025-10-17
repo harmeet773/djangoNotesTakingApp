@@ -1,8 +1,8 @@
 <h2>Your Notes</h2>
 <form method="POST">
   {% csrf_token %}
-  <input type="text" name="title" placeholder="Title" required><br>
-  <textarea name="content" placeholder="Write your note..."></textarea><br>
+  <input type="text" name="note_title" placeholder="Title" required><br>
+  <textarea name="note_content" placeholder="Write your note..."></textarea><br>
   <button type="submit">Save Note</button>
 </form>
 

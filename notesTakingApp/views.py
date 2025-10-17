@@ -8,12 +8,16 @@ from django.db import connection
 def home(request):
     return render(request, 'home.html')  
 
-def register(request):
+def register(request):  
     if request.method == 'POST':
         username = request.POST['username']
+        email = request.POST['email']
         password = request.POST['password']
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO users (username, password) VALUES (%s, %s)", [username, password])
+            cursor.execute(
+                "INSERT INTO users (username, useremail, password) VALUES (%s, %s, %s)",
+                [username, email, password]
+            )
         return redirect('login')
     return render(request, 'register.html')
 
@@ -22,7 +26,7 @@ def login_view(request):
         username = request.POST['username']
         password = request.POST['password']
         with connection.cursor() as cursor:
-            cursor.execute("SELECT id FROM users WHERE username=%s AND password=%s", [username, password])
+            cursor.execute("SELECT user_id FROM users WHERE username=%s AND password=%s", [username, password])
             user = cursor.fetchone()
         if user:
             request.session['user_id'] = user[0]
@@ -33,14 +37,14 @@ def login_view(request):
 def notes(request):
     user_id = request.session.get('user_id')
     if not user_id:
-        return redirect('login')
+        return redirect('login')    
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
+        note_title = request.POST['note_title']
+        note_content = request.POST['note_content']
         with connection.cursor() as cursor:
-            cursor.execute("INSERT INTO notes (user_id, title, content) VALUES (%s, %s, %s)", [user_id, title, content])
+            cursor.execute("INSERT INTO notes (user_id, note_title, note_content) VALUES (%s, %s, %s)", [user_id, note_title, note_content])
     with connection.cursor() as cursor:
-        cursor.execute("SELECT title, content FROM notes WHERE user_id=%s", [user_id])
+        cursor.execute("SELECT note_title, note_content FROM notes WHERE user_id=%s", [user_id])
         all_notes = cursor.fetchall()
-    return render(request, 'notes.html', {'notes': all_notes})
+    return render(request, 'notes.html', {'notes': all_notes})      
 
