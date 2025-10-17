@@ -25,17 +25,17 @@ A simple **Notes Taking Web Application** built with **Django** where users can 
 ## Project Screenshots
 
 ### Home Page
-![Home page](.\assests\homepage.png)
+![Home page](https://raw.githubusercontent.com/harmeet773/djangoNotesTakingApp/refs/heads/main/assests/homepage.png)
 
 ### Login
-![Login](.\assests\login.png)
+![Login](https://raw.githubusercontent.com/harmeet773/djangoNotesTakingApp/refs/heads/main/assests/login.png)
 
 ### Notes
-![Notes 1](.\assests\notes1.png)
-![Notes 2](.\assests\notes2.png)
+![Notes 1](https://raw.githubusercontent.com/harmeet773/djangoNotesTakingApp/refs/heads/main/assests/notes1.png)
+![Notes 2](https://raw.githubusercontent.com/harmeet773/djangoNotesTakingApp/refs/heads/main/assests/notes2.png)
 
 ### Register
-![Register](.\assests\register.png)
+![Register](https://raw.githubusercontent.com/harmeet773/djangoNotesTakingApp/refs/heads/main/assests/register.png)
 
 ## Installation & Setup
 
