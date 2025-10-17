@@ -44,7 +44,7 @@ def notes(request):
         with connection.cursor() as cursor:
             cursor.execute("INSERT INTO notes (user_id, note_title, note_content) VALUES (%s, %s, %s)", [user_id, note_title, note_content])
     with connection.cursor() as cursor:
-        cursor.execute("""    SELECT note_title, note_content FROM notes WHERE user_id=%s ORDER BY created_on DESC """, [user_id])
+        cursor.execute("""    SELECT note_title, note_content ,created_on FROM notes WHERE user_id=%s ORDER BY created_on DESC """, [user_id])
         all_notes = cursor.fetchall()
     return render(request, 'notes.html', {'notes': all_notes})      
 

@@ -1,15 +1,24 @@
-<h2>Your Notes</h2>
+
 <form method="POST">
   {% csrf_token %}
-  <input type="text" name="note_title" placeholder="Title" required><br>
-  <textarea name="note_content" placeholder="Write your note..."></textarea><br>
+  
+  <label for="note_title">Title:</label><br>
+  <input type="text" id="note_title" name="note_title" placeholder="Enter note title" required><br><br>
+
+  <label for="note_content">Content:</label><br>
+  <textarea id="note_content" name="note_content" placeholder="Write your note..."></textarea><br><br>
+
   <button type="submit">Save Note</button>
 </form>
 
 <hr>
-{% for note in notes %}
+
+<h2>Your Notes are </h2>
+
+{% for note in notes %}    
   <h4>{{ note.0 }}</h4>
   <p>{{ note.1 }}</p>
+  <small>Created on: {{ note.2 }}</small>
   <hr>
 {% empty %}
   <p>No notes yet.</p>
