@@ -1,0 +1,16 @@
+<h2>Your Notes</h2>
+<form method="POST">
+  {% csrf_token %}
+  <input type="text" name="title" placeholder="Title" required><br>
+  <textarea name="content" placeholder="Write your note..."></textarea><br>
+  <button type="submit">Save Note</button>
+</form>
+
+<hr>
+{% for note in notes %}
+  <h4>{{ note.0 }}</h4>
+  <p>{{ note.1 }}</p>
+  <hr>
+{% empty %}
+  <p>No notes yet.</p>
+{% endfor %}
