@@ -24,7 +24,7 @@ def create_tables():
                 note_title TEXT NOT NULL,
                 note_content TEXT NOT NULL,
                 last_update DATE,
-                created_on DATE DEFAULT (DATE('now')),
+                created_on DATETIME DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
             )
         ''')
